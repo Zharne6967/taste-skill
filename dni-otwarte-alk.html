@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Dni otwarte w Akademii Leona Koźmińskiego – terminy i zapisy</title>
+<meta name="description" content="Dni otwarte w Akademii Leona Koźmińskiego: terminy spotkań stacjonarnych i online dla kandydatów na studia I i II stopnia, inżynierskie, podyplomowe i MBA. Wybierz termin i zapisz się przez formularz.">
+<link rel="canonical" href="https://www.kozminski.edu.pl/pl/dni-otwarte">
+<meta name="theme-color" content="#14142b">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Akademia Leona Koźmińskiego">
+<meta property="og:title" content="Dni otwarte w Akademii Leona Koźmińskiego">
+<meta property="og:description" content="Poznaj kampus, wykładowców i studentów ALK. Sprawdź terminy dni otwartych i zapisz się na spotkanie.">
+<meta property="og:url" content="https://www.kozminski.edu.pl/pl/dni-otwarte">
+<meta property="og:image" content="https://www.kozminski.edu.pl/sites/leon/files/baner/1920-%C3%97-735.png">
+<meta property="og:image:alt" content="Studenci na kampusie Akademii Leona Koźmińskiego podczas dni otwartych">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://www.kozminski.edu.pl">
+<link rel="preconnect" href="https://kozminski.jotform.com">
+
+<style>
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: #eef0f6;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #14142b;
+    -webkit-font-smoothing: antialiased;
+  }
+  .preview-bar {
+    background: #14142b; color: #fff; padding: 10px 20px;
+    font-size: 13px; letter-spacing: .5px;
+  }
+  .preview-page { padding: 20px 0 60px; }
+  .od-skip {
+    position: absolute; left: 12px; top: -60px; z-index: 50;
+    background: #14142b; color: #fff; padding: 12px 18px;
+    font-size: 15px; font-weight: 700; text-decoration: none;
+    transition: top .15s ease;
+  }
+  .od-skip:focus { top: 12px; }
+  .od-noscript {
+    max-width: 1500px; margin: 20px auto; padding: 28px 32px;
+    background: #fff; border-left: 5px solid #c93b3b;
+    font-size: 17px; line-height: 1.55;
+  }
+  .od-noscript a { color: #c93b3b; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<a class="od-skip" href="#dni-otwarte-daty">Przejdź do treści</a>
+
+<div class="preview-bar">PODGLĄD LOKALNY – Dni Otwarte ALK</div>
+
+<div class="preview-page">
+
+  <noscript>
+    <div class="od-noscript">
+      <h1>Dni otwarte w Akademii Leona Koźmińskiego</h1>
+      <p>Lista terminów wymaga włączonej obsługi JavaScript. Aktualny harmonogram i zapisy znajdziesz w formularzu rejestracyjnym:
+        <a href="https://kozminski.jotform.com/262042735826963">formularz zapisów na dni otwarte</a>.</p>
+      <p>Masz pytania? Napisz na <a href="mailto:promocja@kozminski.edu.pl">promocja@kozminski.edu.pl</a>.</p>
+    </div>
+  </noscript>
+
+  <div id="dni-otwarte-daty"></div>
+
+</div>
+
+<script>
+(function () {
+
+  /* ------------------------------------------------------------------ *
+   *  DANE — jedyne miejsce do edycji przy aktualizacji harmonogramu.
+   *  UWAGA: terminy z przeszłości znikają automatycznie (funkcja
+   *  `aktualny`), więc pilnuj, aby zawsze była tu przynajmniej jedna
+   *  przyszła data w każdej karcie.
+   * ------------------------------------------------------------------ */
+
+  var NAGLOWEK = {
+    nadtytul: 'Rekrutacja 2026/2027',
+    tytul: 'Dni otwarte w Akademii Leona Koźmińskiego',
+    podtytul: 'Poznaj kampus, wykładowców i studentów. Sprawdź, jak wyglądają studia w ALK, zanim wybierzesz kierunek.',
+    zdjecie: 'https://www.kozminski.edu.pl/sites/leon/files/baner/1920-%C3%97-735.png',
+    zdjecieAlt: 'Studenci przed budynkiem Akademii Leona Koźmińskiego podczas dnia otwartego',
+    kafelekFormularza: {
+      tekst: 'Zapisy na dni otwarte',
+      opis: 'Wybierz termin i wypełnij formularz',
+      link: '#formularz-rejestracyjny'
+    }
+  };
+
+  var WSTEP = {
+    lead: 'Zastanawiasz się, jak w praktyce wyglądają studia w Akademii Leona Koźmińskiego? Dni otwarte to najlepsza okazja, aby poznać naszą uczelnię od środka — zobaczyć kampus, spotkać się z wykładowcami i studentami oraz dowiedzieć się, jak przebiega proces rekrutacji na studia I i II stopnia.',
+    reszta: [
+      'Podczas spotkania opowiemy o kierunkach studiów, możliwościach rozwoju międzynarodowego, ścieżkach kariery naszych absolwentów oraz odpowiemy na wszystkie pytania związane z wyborem programu i studiowaniem w ALK. To dobry moment, aby sprawdzić, czy nasza społeczność i sposób prowadzenia zajęć odpowiadają Twoim oczekiwaniom.',
+      'Zabierz rodzinę lub przyjaciół i poznajcie nas bliżej!',
+      'Wybierz dogodny termin z listy poniżej i zapisz się na wydarzenie, wypełniając formularz rejestracyjny. Zapraszamy!'
+    ],
+    rozwin: 'Czytaj więcej',
+    zwin: 'Zwiń'
+  };
+
+  var MIEJSCA = {
+    kampus: {
+      nazwa: 'Kampus ALK, ul. Jagiellońska 57/59, Warszawa',
+      mapa: 'https://www.google.com/maps/search/?api=1&query=Akademia+Leona+Ko%C5%BAmi%C5%84skiego+Jagiello%C5%84ska+57%2F59+Warszawa'
+    },
+    katowice: {
+      nazwa: 'al. Roździeńskiego 1a, Katowice (TDJ S.A.)',
+      mapa: 'https://www.google.com/maps/search/?api=1&query=Al.+Ro%C5%BAdzie%C5%84skiego+1a+Katowice'
+    }
+  };
+
+  var KARTY = [
+
+    {
+      id: 'dni-otwarte-stacjonarne',
+      skrot: 'Stacjonarne',
+      pole: 'stacjonarneDni',
+      kierunek: 'studia I i II stopnia w języku polskim',
+      podtytul: 'Studia I i II stopnia',
+      tytul: 'Dni otwarte w formie stacjonarnej',
+      terminy: [
+        { data: '2026-11-21', godzina: '10:00', format: 'Stacjonarnie', miejsce: MIEJSCA.kampus },
+        { data: '2027-03-20', godzina: '10:00', format: 'Stacjonarnie', miejsce: MIEJSCA.kampus }
+      ]
+    },
+
+    {
+      id: 'dni-otwarte-online-pl',
+      skrot: 'Online po polsku',
+      podtytul: 'Studia I i II stopnia',
+      tytul: 'Dni otwarte w formie online',
+      terminy: [
+        { data: '2026-10-13', godzina: '17:00', format: 'Online', dopisek: 'Studia magisterskie', pole: 'dniOtwarte37', kierunek: 'studia II stopnia w języku polskim' },
+        { data: '2026-11-04', godzina: '17:00', format: 'Online', dopisek: 'Studia licencjackie', pole: 'dniOtwarte', kierunek: 'studia I stopnia w języku polskim' },
+        { data: '2026-12-09', godzina: '17:00', format: 'Online', dopisek: 'Studia magisterskie', pole: 'dniOtwarte37', kierunek: 'studia II stopnia w języku polskim' },
+        { data: '2027-01-20', godzina: '17:00', format: 'Online', dopisek: 'Studia licencjackie', pole: 'dniOtwarte', kierunek: 'studia I stopnia w języku polskim' }
+      ]
+    },
+
+    {
+      id: 'bachelor-open-days',
+      skrot: "Bachelor's (EN)",
+      pole: 'onlineOpen',
+      kierunek: "studia I stopnia w języku angielskim (Bachelor's programs)",
+      jezyk: 'EN',
+      podtytul: 'Events in English',
+      tytul: 'Bachelor Open Days',
+      terminy: [
+        { data: '2026-10-21', godzina: '16:00', format: 'Online' },
+        { data: '2026-12-02', godzina: '16:00', format: 'Online' }
+      ]
+    },
+
+    {
+      id: 'master-open-days',
+      skrot: "Master's (EN)",
+      pole: 'onlineOpen40',
+      kierunek: "studia II stopnia w języku angielskim (Master's programs)",
+      jezyk: 'EN',
+      podtytul: 'Events in English',
+      tytul: 'Master Open Days',
+      terminy: [
+        { data: '2026-10-28', godzina: '16:00', format: 'Online' },
+        { data: '2026-11-25', godzina: '16:00', format: 'Online' },
+        { data: '2027-01-13', godzina: '16:00', format: 'Online', tytul: 'The new role of AI in Big Data Science: Tools, Practice and Future Jobs', link: 'https://www.kozminski.edu.pl/en/events/new-role-ai-big-data-science-tools-practice-and-future-jobs' }
+      ]
+    },
+
+    {
+      id: 'dni-otwarte-inzynierskie',
+      skrot: 'Inżynierskie',
+      podtytul: 'Informatyka',
+      tytul: 'Dni otwarte na studia inżynierskie',
+      terminy: [
+        { data: '2026-10-07', godzina: '16:00', format: 'Online' },
+        { data: '2026-11-18', godzina: '16:00', format: 'Online' },
+        { data: '2027-01-27', godzina: '16:00', format: 'Online' }
+      ],
+      zapisy: { tekst: 'Przejdź do formularza z zapisami', link: 'https://kozminski.jotform.com/260693855104359' }
+    },
+
+    {
+      id: 'dni-otwarte-podyplomowe',
+      skrot: 'Podyplomowe i MBA',
+      motyw: 'podyplomowe',
+      podtytul: 'Warszawa i Katowice',
+      tytul: 'Dni otwarte na studia podyplomowe i MBA',
+      terminy: [
+        { data: '2026-09-24', godzina: '16:30', format: 'Stacjonarnie', tytul: 'Koźmiński & TDJ Business Forum', miejsce: MIEJSCA.katowice, link: 'https://www.kozminski.edu.pl/pl/wydarzenia/kozminski-tdj-business-forum-w-katowicach' },
+        { data: '2026-10-10', godzina: '12:00', format: 'Stacjonarnie', tytul: 'Dzień otwarty studiów podyplomowych', miejsce: MIEJSCA.kampus, link: 'https://www.kozminski.edu.pl/pl/wydarzenia/dzien-otwarty-studiow-podyplomowych-w-akademii-leona-kozminskiego' },
+        { data: '2026-10-10', godzina: '12:30', format: ['Stacjonarnie','Online'], tytul: 'MBA Open Day', miejsce: MIEJSCA.kampus, link: 'https://www.kozminski.edu.pl/pl/wydarzenia/mba-open-day-w-akademii-leona-kozminskiego' },
+        { data: '2026-11-17', godzina: '18:00', format: 'Online', tytul: 'Studia podyplomowe i MBA realizowane w Katowicach', link: 'https://www.kozminski.edu.pl/pl/wydarzenia/dzien-otwarty-online-studiow-podyplomowych-i-mba-realizowanych-w-katowicach' }
+      ],
+      zapisy: { tekst: 'Zobacz pełny harmonogram spotkań', link: 'https://www.kozminski.edu.pl/pl/studia-podyplomowe-dni-otwarte-online' }
+    }
+
+  ];
+
+  /* Stan pusty nigdy nie jest ślepym zaułkiem — zawsze podaje następny krok. */
+  var BRAK_TERMINOW = {
+    tekst: 'Nowe terminy pojawią się wkrótce.',
+    akcja: { tekst: 'Zapytaj o najbliższy termin', link: 'mailto:promocja@kozminski.edu.pl' }
+  };
+
+  var FORMULARZ = {
+    kontener: 'formularz-rejestracyjny',
+    id: 'JotFormIFrame-262042735826963',
+    adres: 'https://kozminski.jotform.com/262042735826963',
+    baza: 'https://kozminski.jotform.com/',
+    tytul: 'Formularz zapisów na dni otwarte w Akademii Leona Koźmińskiego 2026/2027',
+    wysokosc: '539px',
+    naglowek: 'Formularz rejestracyjny',
+    opis: 'Kliknij „Zapisz się” przy wybranym terminie — data uzupełni się w formularzu automatycznie. Możesz też wybrać ją ręcznie poniżej.'
+  };
+
+  var ZAPISY = {
+    przycisk: 'Zapisz się',
+    przyciskEN: 'Sign up',
+    poleKierunek: 'interesujaMnie22',
+    statusPrefiks: 'Wybrane terminy:',
+    statusPodpowiedz: 'Formularz poniżej został wstępnie uzupełniony — sprawdź datę przed wysłaniem.'
+  };
+
+  var NAWIGACJA = { etykieta: 'Przejdź do:' };
+
+  var INFO = {
+    naglowek: 'Podczas wizyty na uczelni nie tylko poznasz zasady rekrutacji, ale przede wszystkim zobaczysz, jak wygląda studiowanie w ALK na co dzień. W trakcie spotkania:',
+    punkty: [
+      'Dowiesz się, jak krok po kroku przebiega proces rekrutacji',
+      'Spotkasz się z władzami uczelni i poznasz ofertę kierunków, w tym programów w języku angielskim',
+      'Usłyszysz, jak Akademia wygląda z perspektywy studentów',
+      'Weźmiesz udział w spacerze po kampusie',
+      'Porozmawiasz indywidualnie z opiekunami wybranych kierunków',
+      'Zadasz wszystkie pytania podczas sesji Q&A'
+    ],
+    stopka: 'Przez cały czas trwania wydarzenia otwarta będzie uczelniana kawiarnia z kawą i ciastkami, a także stoisko z lodami.',
+    kontakt: { tekst: 'Masz pytania? Skontaktuj się z nami:', mail: 'promocja@kozminski.edu.pl' },
+    zdjecie: 'https://www.kozminski.edu.pl/sites/leon/files/images/IMG_3569_0.JPG',
+    zdjecieAlt: 'Kandydaci rozmawiają z pracownikami uczelni przy stoiskach informacyjnych podczas dnia otwartego'
+  };
+
+  var GALERIA = {
+    naglowek: 'Tak wyglądają dni otwarte w ALK',
+    autoplay: true,
+    interval: 5000,
+    zdjecia: [
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/_MG_1164.JPG', alt: 'Kandydaci na studia w auli podczas prezentacji o rekrutacji' },
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/637707790_1338718221623300_6131088354039370393_n.jpg', alt: 'Studenci ALK przy stoisku informacyjnym rozmawiają z odwiedzającymi' },
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/_MG_1740.JPG', alt: 'Zwiedzanie kampusu Akademii Leona Koźmińskiego w grupie' },
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/_MG_1640.JPG', alt: 'Wykładowca odpowiada na pytania kandydatów podczas sesji Q&A' },
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/637454114_1338718924956563_1963638635530096501_n.jpg', alt: 'Uczestnicy dnia otwartego w holu głównym budynku uczelni' },
+      { src: 'https://www.kozminski.edu.pl/sites/leon/files/images/_MG_1237.JPG', alt: 'Indywidualna rozmowa kandydata z opiekunem kierunku' }
+    ]
+  };
+
+
+  /* ------------------------------------------------------------------ *
+   *  STYLE — wszystkie kolory i rozmiary jako tokeny (:root),
+   *  motyw „podyplomowe” to wyłącznie nadpisanie tokenów.
+   * ------------------------------------------------------------------ */
+
+  var CSS = [
+    '#dni-otwarte-daty{',
+    '  --od-canvas:#eef0f6;',
+    '  --od-surface:#ffffff;',
+    '  --od-subtle:#f4f5fa;',
+    '  --od-ink:#14142b;',
+    '  --od-ink-muted:#5b5f77;',
+    '  --od-hairline:#e4e7f0;',
+    '  --od-accent:#f35c5c;',            /* wyłącznie dekoracja (kreski, ramki) */
+    '  --od-accent-ink:#c93b3b;',        /* tekst i CTA — kontrast 5.0:1 na bieli */
+    '  --od-accent-ink-hover:#a82f2f;',  /* kontrast rośnie na hover — 6.7:1 */
+    '  --od-accent-wash:#fdeaea;',
+    '  --od-accent-wash-ink:#a03030;',
+    '  --od-on-accent:#ffffff;',
+    '  --od-cta-bg:#c93b3b;',
+    '  --od-cta-bg-hover:#a82f2f;',
+    '  --od-focus:#14142b;',
+    '  --od-shadow-sm:0 1px 2px rgba(3,9,40,.05), 0 2px 8px rgba(3,9,40,.05);',
+    '  --od-shadow-md:0 1px 2px rgba(3,9,40,.07), 0 12px 28px rgba(3,9,40,.10);',
+    '  --od-shadow-lg:0 2px 4px rgba(3,9,40,.10), 0 20px 46px rgba(3,9,40,.20);',
+    '  --od-maxw:1500px;',
+    '  --od-fs-h1:clamp(26px, 1.35rem + 2.2vw, 46px);',
+    '  --od-fs-h2:clamp(21px, 1.15rem + .5vw, 26px);',
+    '  --od-fs-lead:clamp(16px, .98rem + .2vw, 18px);',
+    '  --od-fs-body:17px;',
+    '  --od-fs-small:14px;',
+    '}',
+    '#dni-otwarte-daty *,#dni-otwarte-daty *::before,#dni-otwarte-daty *::after{box-sizing:border-box;}',
+    '#dni-otwarte-daty button,#dni-otwarte-daty a{touch-action:manipulation;-webkit-tap-highlight-color:rgba(20,20,43,.15);}',
+
+    /* ---------- HERO ---------- */
+    '.od-hero{max-width:var(--od-maxw);margin:0 auto;padding:0 20px;position:relative;}',
+    '.od-hero__inner{position:relative;overflow:hidden;background:var(--od-ink);height:clamp(220px,34vw,420px);}',
+    '.od-hero__inner>img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;}',
+    '.od-hero__scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,43,.92) 0%,rgba(20,20,43,.66) 42%,rgba(20,20,43,.06) 78%);}',
+    '.od-hero__scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,20,43,.55) 0%,rgba(20,20,43,0) 55%);}',
+    '.od-hero__content{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(24px,3vw,44px) clamp(20px,2.4vw,34px);z-index:1;}',
+    '.od-hero__eyebrow{display:inline-block;margin:0 0 12px;padding:5px 11px;background:var(--od-accent);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;}',
+    '.od-hero__content h1{margin:0;color:#fff;font-size:var(--od-fs-h1);line-height:1.1;font-weight:700;letter-spacing:-.02em;max-width:18ch;text-wrap:balance;}',
+    '.od-hero__content p{margin:14px 0 0;color:rgba(255,255,255,.92);font-size:var(--od-fs-lead);line-height:1.45;max-width:56ch;text-wrap:pretty;}',
+    '.od-hero__tile{position:absolute;right:20px;bottom:clamp(20px,2.4vw,34px);z-index:2;display:flex;align-items:center;gap:16px;max-width:380px;padding:18px 22px;background:var(--od-surface);border-left:4px solid var(--od-accent);text-decoration:none;box-shadow:var(--od-shadow-lg);transition:transform .2s ease,box-shadow .2s ease;}',
+    '.od-hero__tile:hover{transform:translateY(-3px);box-shadow:0 6px 10px rgba(3,9,40,.12),0 26px 52px rgba(3,9,40,.26);}',
+    '.od-hero__tile-ico{display:flex;color:var(--od-accent-ink);flex-shrink:0;}',
+    '.od-hero__tile-txt{display:flex;flex-direction:column;gap:3px;min-width:0;}',
+    '.od-hero__tile-txt strong{color:var(--od-ink);font-size:17px;font-weight:700;line-height:1.2;}',
+    '.od-hero__tile-txt small{color:var(--od-ink-muted);font-size:var(--od-fs-small);line-height:1.25;}',
+    '.od-hero__tile-arrow{display:flex;color:var(--od-accent-ink);flex-shrink:0;}',
+
+    /* ---------- STRZAŁKI ---------- */
+    '.od-arrow{display:block;flex-shrink:0;}',
+    '.od-arrow--tile{width:24px;height:24px;animation:odArrow 1.8s ease-in-out infinite;}',
+    '.od-arrow--cta{width:22px;height:22px;margin-left:12px;animation:odArrow 1.8s ease-in-out infinite;}',
+    /* Link wychodzący poza stronę: strzałka w prawo zamiast „przewiń w dół”. */
+    '.od-arrow--ext{transform:rotate(-90deg);animation:none;transition:transform .2s ease;}',
+    '.od-karta__cta:hover .od-arrow--ext{transform:rotate(-90deg) translateY(-4px);}',
+    '.od-arrow--gal{width:28px;height:28px;transition:transform .2s ease;}',
+    '.odg-prev .od-arrow--gal{transform:rotate(90deg);}',
+    '.odg-next .od-arrow--gal{transform:rotate(-90deg);}',
+    '.odg-prev:hover .od-arrow--gal{transform:rotate(90deg) translateY(3px);}',
+    '.odg-next:hover .od-arrow--gal{transform:rotate(-90deg) translateY(3px);}',
+    '@keyframes odArrow{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}',
+
+    /* ---------- WSTĘP ---------- */
+    '.od-wstep{max-width:var(--od-maxw);margin:15px auto 0;padding:0 20px;}',
+    '.od-wstep__box{background:var(--od-surface);padding:clamp(26px,3vw,42px) clamp(24px,3vw,46px);box-shadow:var(--od-shadow-sm);}',
+    '.od-wstep__box p{margin:0 0 16px;font-size:var(--od-fs-body);line-height:1.6;color:var(--od-ink);max-width:70ch;text-wrap:pretty;}',
+    '.od-wstep__lead{font-weight:700;font-size:var(--od-fs-lead)!important;}',
+    '.od-wstep__reszta p:last-child{margin-bottom:0;}',
+    '.od-wstep__toggle{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 0;min-height:24px;border:none;background:none;cursor:pointer;color:var(--od-accent-ink);font-family:inherit;font-size:16px;font-weight:700;text-decoration:underline;text-underline-offset:3px;}',
+    '.od-wstep__toggle:hover{color:var(--od-accent-ink-hover);}',
+
+    /* ---------- NAWIGACJA PO KARTACH ---------- */
+    '.od-nav{max-width:var(--od-maxw);margin:22px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;}',
+    '.od-nav__label{font-size:var(--od-fs-small);font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--od-ink-muted);}',
+    '.od-nav__link{display:inline-flex;align-items:center;min-height:36px;padding:8px 14px;background:var(--od-surface);border:1px solid var(--od-hairline);color:var(--od-ink);font-size:var(--od-fs-small);font-weight:700;text-decoration:none;transition:border-color .2s ease,color .2s ease,box-shadow .2s ease;}',
+    '.od-nav__link:hover{border-color:var(--od-accent-ink);color:var(--od-accent-ink);box-shadow:var(--od-shadow-sm);}',
+
+    /* ---------- SIATKA KART ---------- */
+    '.od-siatka{display:grid;grid-template-columns:repeat(auto-fit,minmax(560px,1fr));align-items:start;gap:16px;margin:16px auto 0;max-width:var(--od-maxw);padding:0 20px;}',
+    '.od-karta{background:var(--od-surface);padding:clamp(26px,2.2vw,38px) clamp(24px,2.2vw,40px) clamp(24px,2vw,34px);border-top:5px solid var(--od-accent);box-shadow:var(--od-shadow-sm);scroll-margin-top:100px;display:flex;flex-direction:column;transition:box-shadow .2s ease;}',
+    '.od-karta:hover{box-shadow:var(--od-shadow-md);}',
+    '.od-karta__head{margin-bottom:22px;}',
+    '.od-karta__head span{display:block;font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--od-accent-ink);margin-bottom:7px;}',
+    '.od-karta__head h2{margin:0;font-size:var(--od-fs-h2);font-weight:700;line-height:1.2;letter-spacing:-.01em;color:var(--od-ink);text-wrap:balance;}',
+    '.od-karta__pusto{margin:0 0 4px;color:var(--od-ink-muted);font-size:16px;line-height:1.5;}',
+    '.od-karta__pusto-link{display:inline-flex;align-items:center;min-height:24px;color:var(--od-accent-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px;}',
+    '.od-karta__pusto-link:hover{color:var(--od-accent-ink-hover);}',
+
+    /* ---------- TERMINY ---------- */
+    '.od-terminy{display:flex;flex-direction:column;list-style:none;margin:0;padding:0;}',
+    '.od-termin{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-top:1px solid var(--od-hairline);}',
+    '.od-termin:first-child{border-top:none;padding-top:0;}',
+    '.od-chip{flex-shrink:0;width:56px;text-align:center;background:var(--od-subtle);border:1px solid var(--od-hairline);overflow:hidden;font-variant-numeric:tabular-nums;}',
+    '.od-chip__d{display:block;padding-top:8px;font-size:20px;font-weight:700;line-height:1;color:var(--od-ink);}',
+    '.od-chip__m{display:block;margin-top:3px;padding-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.9px;color:var(--od-ink-muted);}',
+    '.od-chip__g{display:block;padding:4px 0;background:var(--od-cta-bg);color:var(--od-on-accent);font-size:11px;font-weight:700;letter-spacing:.3px;}',
+    '.od-termin__tresc{flex:1;min-width:0;}',
+    '.od-termin__tresc>:last-child{margin-bottom:0;}',
+    '.od-termin__tytul{font-size:16px;font-weight:700;line-height:1.35;color:var(--od-ink);overflow-wrap:break-word;}',
+    '.od-termin__tytul a{color:var(--od-accent-ink);text-decoration:underline;text-underline-offset:3px;}',
+    '.od-termin__tytul a:hover{color:var(--od-accent-ink-hover);}',
+    '.od-dopisek{font-size:var(--od-fs-small);color:var(--od-ink-muted);margin-top:4px;}',
+    '.od-termin__meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:9px;}',
+    '.od-tag{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;background:var(--od-subtle);color:var(--od-ink-muted);}',
+    '.od-tag--stacjonarnie{background:var(--od-accent-wash);color:var(--od-accent-wash-ink);}',
+    '.od-tag--jezyk{background:var(--od-ink);color:#fff;}',
+    '.od-miejsce{display:inline-flex;align-items:center;gap:6px;font-size:var(--od-fs-small);color:var(--od-ink-muted);text-decoration:none;}',
+    'a.od-miejsce{min-height:24px;}',
+    'a.od-miejsce:hover{color:var(--od-accent-ink);text-decoration:underline;text-underline-offset:3px;}',
+    '.od-miejsce svg{flex-shrink:0;}',
+    '.od-termin__akcja{flex-shrink:0;align-self:center;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:9px 16px;border:2px solid var(--od-accent-ink);background:none;color:var(--od-accent-ink);font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease;}',
+    '.od-termin__akcja:hover{background:var(--od-accent-ink);color:var(--od-on-accent);}',
+    '.od-termin__akcja svg{display:none;}',
+    '.od-termin__akcja.is-wybrany{background:var(--od-accent-ink);color:var(--od-on-accent);border-color:var(--od-accent-ink);}',
+    '.od-termin__akcja.is-wybrany svg{display:block;}',
+
+    '.od-karta__cta{display:flex;justify-content:center;align-items:center;width:100%;margin-top:26px;padding:16px 24px;min-height:60px;background:var(--od-cta-bg);color:var(--od-on-accent)!important;font-size:17px;font-weight:700;letter-spacing:.4px;text-align:center;text-decoration:none;line-height:1.3;transition:background-color .2s ease;}',
+    '.od-karta__cta:hover{background:var(--od-cta-bg-hover);}',
+    '.od-karta__spacer{flex:1;}',
+
+    /* ---------- MOTYW: PODYPLOMOWE / MBA ---------- */
+    '.od-motyw-podyplomowe{',
+    '  --od-ink:#030928;',
+    '  --od-accent:#b4865e;',
+    '  --od-accent-ink:#8f6845;',
+    '  --od-accent-ink-hover:#6f4f31;',
+    '  --od-accent-wash:#f5ece3;',
+    '  --od-accent-wash-ink:#7a5738;',
+    '  --od-cta-bg:#030928;',
+    '  --od-cta-bg-hover:#141c4d;',
+    '}',
+    '.od-motyw-podyplomowe .od-karta__cta .od-arrow{color:#b4865e;}',
+
+    /* ---------- FORMULARZ ---------- */
+    '.od-formularz{max-width:var(--od-maxw);margin:34px auto 0;padding:0 20px;scroll-margin-top:24px;}',
+    '.od-formularz__box{max-width:1000px;margin:0 auto;background:var(--od-surface);padding:clamp(26px,3vw,40px) clamp(20px,2.4vw,36px) clamp(20px,2vw,28px);box-shadow:var(--od-shadow-sm);border-top:5px solid var(--od-accent);}',
+    '.od-formularz__box h2{margin:0 0 8px;font-size:var(--od-fs-h2);font-weight:700;letter-spacing:-.01em;color:var(--od-ink);}',
+    '.od-formularz__box>p{margin:0 0 18px;font-size:16px;line-height:1.55;color:var(--od-ink-muted);max-width:70ch;}',
+    '.od-status{margin:0 0 20px;padding:14px 18px;background:var(--od-accent-wash);border-left:4px solid var(--od-accent-ink);font-size:15px;line-height:1.5;color:var(--od-ink);}',
+    '.od-status strong{display:block;margin-bottom:4px;}',
+    '.od-status span{color:var(--od-ink-muted);font-size:var(--od-fs-small);}',
+
+    /* ---------- SEKCJA INFO ---------- */
+    '.open-days-info{display:grid;grid-template-columns:2fr 1fr;background:var(--od-surface);background-clip:content-box;max-width:var(--od-maxw);margin:34px auto 0;padding:0 20px;align-items:stretch;box-shadow:none;}',
+    '.open-days-info>*{min-width:0;}',
+    '.open-days-info__text{padding:clamp(28px,2.4vw,38px) clamp(24px,2.4vw,36px);}',
+    '.open-days-info__text h2{font-size:var(--od-fs-body);font-weight:700;color:var(--od-ink);line-height:1.5;margin:0;max-width:62ch;text-wrap:pretty;}',
+    '.open-days-info__text ul{margin:20px 0 0;padding:0 0 0 20px;display:flex;flex-direction:column;gap:10px;}',
+    '.open-days-info__text li{color:var(--od-ink);font-size:var(--od-fs-body);line-height:1.5;}',
+    '.open-days-info__text li::marker{color:var(--od-accent-ink);}',
+    '.open-days-info__foot{margin:20px 0 0;color:var(--od-ink);font-size:var(--od-fs-body);line-height:1.5;}',
+    '.open-days-info__foot a{color:var(--od-accent-ink);text-decoration:underline;text-underline-offset:3px;font-weight:700;}',
+    '.open-days-info__foot a:hover{color:var(--od-accent-ink-hover);}',
+    '.open-days-info__media{background:transparent;padding:20px 20px 20px 0;min-height:300px;overflow:hidden;}',
+    '.open-days-info__media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#e9ebf5;}',
+
+    /* ---------- GALERIA ---------- */
+    '.odg-gallery{max-width:1040px;margin:40px auto 0;padding:0 20px;}',
+    '.odg-gallery h2{margin:0 0 16px;font-size:var(--od-fs-h2);font-weight:700;letter-spacing:-.01em;color:var(--od-ink);text-align:center;}',
+    '.odg-stage{position:relative;overflow:hidden;background:#e9ebf5;box-shadow:var(--od-shadow-sm);}',
+    '.odg-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}',
+    '.odg-slide{position:relative;flex:0 0 100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;}',
+    '.odg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}',
+    '.odg-ph{position:relative;color:var(--od-ink-muted);font-weight:700;font-size:16px;letter-spacing:.5px;}',
+    '.odg-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border:none;cursor:pointer;background:var(--od-cta-bg);color:var(--od-on-accent);line-height:1;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease;}',
+    '.odg-arrow:hover{background:var(--od-cta-bg-hover);}',
+    '.odg-prev{left:14px;}',
+    '.odg-next{right:14px;}',
+    '.odg-bar{position:absolute;right:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:8px;}',
+    '.odg-counter{background:rgba(20,20,43,.82);color:#fff;font-size:13px;font-weight:700;letter-spacing:1px;padding:8px 12px;font-variant-numeric:tabular-nums;}',
+    '.odg-play{width:36px;height:36px;border:none;cursor:pointer;background:rgba(20,20,43,.82);color:#fff;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease;}',
+    '.odg-play:hover{background:rgba(20,20,43,.95);}',
+    '.odg-thumbs{display:flex;gap:10px;margin-top:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;}',
+    '.odg-thumb{position:relative;flex:0 0 auto;width:96px;height:64px;border:2px solid transparent;padding:0;cursor:pointer;background:#e9ebf5;overflow:hidden;opacity:.62;transition:border-color .2s ease,opacity .2s ease;display:flex;align-items:center;justify-content:center;}',
+    '.odg-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}',
+    '.odg-thumb .odg-ph{font-size:13px;}',
+    '.odg-thumb:hover{opacity:1;}',
+    '.odg-thumb.is-active{border-color:var(--od-accent-ink);opacity:1;}',
+
+    /* ---------- POMOCNICZE ---------- */
+    '.od-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}',
+    '#dni-otwarte-daty a:focus-visible,#dni-otwarte-daty button:focus-visible{outline:3px solid var(--od-focus);outline-offset:3px;}',
+    '.od-hero__tile:focus-visible{outline-color:#fff;}',
+
+    /* ---------- RESPONSYWNOŚĆ ---------- */
+    '@media(max-width:1200px){',
+    '  .od-hero__tile{max-width:320px;padding:15px 18px;gap:12px;}',
+    '}',
+    '@media(max-width:900px){',
+    '  .od-hero__scrim{background:linear-gradient(180deg,rgba(20,20,43,.15) 0%,rgba(20,20,43,.45) 45%,rgba(20,20,43,.88) 100%);}',
+    '  .od-hero__scrim::after{display:none;}',
+    '  .od-hero__content h1{max-width:none;}',
+    '  .od-hero__tile{position:static;max-width:none;padding:14px 16px;margin-top:12px;box-shadow:var(--od-shadow-sm);}',
+    '  .od-hero__tile:hover{transform:none;box-shadow:var(--od-shadow-md);}',
+    '  .od-hero__tile-txt strong{font-size:15px;}',
+    '  .od-hero__tile-txt small{font-size:13px;}',
+    '  .od-siatka{grid-template-columns:1fr;gap:20px;}',
+    '  .od-termin{flex-wrap:wrap;gap:12px 16px;}',
+    '  .od-termin__akcja{flex:0 0 auto;align-self:center;min-height:44px;padding:11px 18px;font-size:14px;}',
+    '  .od-nav{gap:8px;}',
+    '  .open-days-info{grid-template-columns:1fr;}',
+    '  .open-days-info__media{padding:0 24px 24px;min-height:0;height:244px;}',
+    '  .odg-arrow{width:44px;height:44px;}',
+    '  .od-arrow--gal{width:24px;height:24px;}',
+    '  .odg-thumb{width:76px;height:52px;}',
+    '}',
+    /* Telefon: przycisk schodzi do własnej linii, żeby data nie łamała się w środku wyrazu. */
+    '@media(max-width:640px){',
+    '  .od-termin__tresc{flex:1 1 calc(100% - 72px);}',
+    '  .od-termin__akcja{flex:1 1 100%;width:100%;margin-left:72px;justify-content:center;}',
+    '  .od-karta__cta{font-size:16px;}',
+    '  .odg-arrow{width:40px;height:40px;}',
+    '  .odg-prev{left:8px;}',
+    '  .odg-next{right:8px;}',
+    '}',
+    '@media(prefers-reduced-motion:reduce){',
+    '  #dni-otwarte-daty *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}',
+    '  .odg-track{transition:none;}',
+    '}'
+  ].join('\n');
+
+  var styleEl = document.createElement('style');
+  styleEl.textContent = CSS;
+  document.head.appendChild(styleEl);
+
+
+  /* ------------------------------------------------------------------ *
+   *  POMOCNICZE
+   * ------------------------------------------------------------------ */
+
+  var MIESIACE = ['STY','LUT','MAR','KWI','MAJ','CZE','LIP','SIE','WRZ','PAŹ','LIS','GRU'];
+  var MIESIACE_PELNE = ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
+  var DNI = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'];
+  var MIESIACE_EN = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var MIESIACE_EN_PELNE = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DNI_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  var BEZ_RUCHU = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function przewin(el){
+    if (!el) return;
+    el.scrollIntoView({ behavior: BEZ_RUCHU ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  function strzalka(mod){
+    return '<svg class="od-arrow' + (mod ? ' ' + mod : '') + '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">'
+         + '<path d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"/>'
+         + '<path d="M12 15.25C11.59 15.25 11.25 14.91 11.25 14.5V8.5C11.25 8.09 11.59 7.75 12 7.75C12.41 7.75 12.75 8.09 12.75 8.5V14.5C12.75 14.91 12.41 15.25 12 15.25Z"/>'
+         + '<path d="M11.9999 16.2504C11.8099 16.2504 11.6199 16.1804 11.4699 16.0304L8.46994 13.0304C8.17994 12.7404 8.17994 12.2604 8.46994 11.9704C8.75994 11.6804 9.23994 11.6804 9.52994 11.9704L11.9999 14.4404L14.4699 11.9704C14.7599 11.6804 15.2399 11.6804 15.5299 11.9704C15.8199 12.2604 15.8199 12.7404 15.5299 13.0304L12.5299 16.0304C12.3799 16.1804 12.1899 16.2504 11.9999 16.2504Z"/>'
+         + '</svg>';
+  }
+
+  function ptaszek(){
+    return '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+  }
+
+  function parsujDate(s){
+    var cz = String(s).split('-');
+    return new Date(+cz[0], +cz[1] - 1, +cz[2]);
+  }
+
+  function aktualny(t){
+    var d = parsujDate(t.data);
+    var dzis = new Date();
+    dzis.setHours(0,0,0,0);
+    return d >= dzis;
+  }
+
+  function dataSlownie(d, jezyk){
+    if (jezyk === 'EN') {
+      return DNI_EN[d.getDay()] + ', ' + d.getDate() + ' ' + MIESIACE_EN_PELNE[d.getMonth()] + ' ' + d.getFullYear();
+    }
+    return DNI[d.getDay()] + ', ' + d.getDate() + ' ' + MIESIACE_PELNE[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function pelnaData(d){
+    return ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
+  }
+
+  function isoData(d, godzina){
+    return d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2)
+         + (godzina ? 'T' + godzina : '');
+  }
+
+  function porownaj(a, b){
+    if (a.data !== b.data) return a.data < b.data ? -1 : 1;
+    return (a.godzina || '') < (b.godzina || '') ? -1 : 1;
+  }
+
+  function aktualneTerminy(k){
+    return (k.terminy || []).filter(aktualny).sort(porownaj);
+  }
+
+
+  /* ------------------------------------------------------------------ *
+   *  RENDER
+   * ------------------------------------------------------------------ */
+
+  function renderNaglowek(h){
+    if(!h) return '';
+    var img = h.zdjecie
+      ? '<img src="' + esc(h.zdjecie) + '" alt="' + esc(h.zdjecieAlt || '') + '" width="1920" height="735"'
+        + ' fetchpriority="high" decoding="async" onerror="this.style.display=\'none\'">'
+      : '';
+    var ico = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"></path><line x1="8.5" y1="10" x2="15.5" y2="10"></line><line x1="8.5" y1="14" x2="15.5" y2="14"></line><line x1="8.5" y1="18" x2="12.5" y2="18"></line></svg>';
+    var k = h.kafelekFormularza;
+    var kafelek = k
+      ? '<a class="od-hero__tile" href="' + esc(k.link) + '" data-przewin="' + esc(k.link.replace('#','')) + '">'
+      +   '<span class="od-hero__tile-ico">' + ico + '</span>'
+      +   '<span class="od-hero__tile-txt"><strong>' + esc(k.tekst) + '</strong>'
+      +     (k.opis ? '<small>' + esc(k.opis) + '</small>' : '')
+      +   '</span>'
+      +   '<span class="od-hero__tile-arrow">' + strzalka('od-arrow--tile') + '</span>'
+      + '</a>'
+      : '';
+    return '<header class="od-hero">'
+         +   '<div class="od-hero__inner">'
+         +     img
+         +     '<div class="od-hero__scrim" aria-hidden="true"></div>'
+         +     '<div class="od-hero__content">'
+         +       (h.nadtytul ? '<p class="od-hero__eyebrow">' + esc(h.nadtytul) + '</p>' : '')
+         +       '<h1>' + esc(h.tytul) + '</h1>'
+         +       (h.podtytul ? '<p>' + esc(h.podtytul) + '</p>' : '')
+         +     '</div>'
+         +   '</div>'
+         +   kafelek
+         + '</header>';
+  }
+
+  function renderWstep(w){
+    if(!w) return '';
+    var reszta = (w.reszta || []).map(function(a){ return '<p>' + esc(a) + '</p>'; }).join('');
+    return '<div class="od-wstep"><div class="od-wstep__box">'
+         +   '<p class="od-wstep__lead">' + esc(w.lead) + '</p>'
+         +   (reszta
+              ? '<div class="od-wstep__reszta" id="od-wstep-reszta" hidden>' + reszta + '</div>'
+              + '<button class="od-wstep__toggle" type="button" aria-expanded="false" aria-controls="od-wstep-reszta"'
+              + ' data-rozwin="' + esc(w.rozwin) + '" data-zwin="' + esc(w.zwin) + '">' + esc(w.rozwin) + '</button>'
+              : '')
+         + '</div></div>';
+  }
+
+  function renderNawigacja(karty){
+    var linki = karty.filter(function(k){ return aktualneTerminy(k).length; }).map(function(k){
+      return '<a class="od-nav__link" href="#' + esc(k.id) + '">' + esc(k.skrot || k.tytul) + '</a>';
+    }).join('');
+    if(!linki) return '';
+    return '<nav class="od-nav" aria-label="Rodzaje dni otwartych">'
+         +   '<span class="od-nav__label">' + esc(NAWIGACJA.etykieta) + '</span>' + linki
+         + '</nav>';
+  }
+
+  function renderMiejsce(m){
+    if(!m || !m.nazwa) return '';
+    var pin = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>';
+    if (m.mapa) {
+      return '<a class="od-miejsce" href="' + esc(m.mapa) + '" target="_blank" rel="noopener">' + pin
+           + '<span>' + esc(m.nazwa) + '</span>'
+           + '<span class="od-sr"> (otwiera mapę w nowej karcie)</span></a>';
+    }
+    return '<span class="od-miejsce">' + pin + '<span>' + esc(m.nazwa) + '</span></span>';
+  }
+
+  function renderTermin(t, k){
+    var jezyk = k.jezyk;
+    var d = parsujDate(t.data);
+    var skrot = (jezyk === 'EN' ? MIESIACE_EN : MIESIACE)[d.getMonth()];
+    var dd = ('0' + d.getDate()).slice(-2);
+    var slownie = dataSlownie(d, jezyk);
+
+    /* Data w chipie jest wizualnym skrótem — pełny zapis czyta czytnik ekranu. */
+    var chip = '<div class="od-chip" aria-hidden="true">'
+             + '<b class="od-chip__d">' + dd + '</b>'
+             + '<span class="od-chip__m">' + skrot + '</span>'
+             + (t.godzina ? '<span class="od-chip__g">' + esc(t.godzina) + '</span>' : '')
+             + '</div>';
+
+    var formaty = t.format ? [].concat(t.format) : [];
+    var meta = formaty.map(function(f){
+      return '<span class="od-tag od-tag--' + esc(f.toLowerCase()) + '">' + esc(f) + '</span>';
+    }).join('');
+
+    var etykieta = slownie + (t.godzina ? ', godz. ' + t.godzina : '');
+    var czas = '<time datetime="' + esc(isoData(d, t.godzina)) + '">' + esc(slownie)
+             + (t.godzina ? ', ' + esc(t.godzina) : '') + '</time>';
+
+    var tytul;
+    if (t.tytul) {
+      tytul = t.link
+        ? '<div class="od-termin__tytul"><a href="' + esc(t.link) + '" target="_blank" rel="noopener">' + esc(t.tytul) + '</a></div>'
+          + '<div class="od-dopisek">' + czas + '</div>'
+        : '<div class="od-termin__tytul">' + esc(t.tytul) + '</div><div class="od-dopisek">' + czas + '</div>';
+    } else {
+      tytul = '<div class="od-termin__tytul">' + czas + '</div>';
+    }
+    var dopisek = t.dopisek ? '<div class="od-dopisek">' + esc(t.dopisek) + '</div>' : '';
+
+    var akcja = '';
+    var pole = t.pole || k.pole;
+    if (!t.link && !k.zapisy && pole) {
+      var kierunek = t.kierunek || k.kierunek || '';
+      var etykietaBtn = jezyk === 'EN' ? ZAPISY.przyciskEN : ZAPISY.przycisk;
+      akcja = '<button class="od-termin__akcja" type="button" aria-pressed="false"'
+            + ' data-pole="' + esc(pole) + '" data-termin="' + esc(pelnaData(d)) + '"'
+            + ' data-etykieta="' + esc(etykieta + (t.dopisek ? ' — ' + t.dopisek : '')) + '"'
+            + (kierunek ? ' data-kierunek="' + esc(kierunek) + '"' : '') + '>'
+            + ptaszek() + '<span>' + esc(etykietaBtn) + '</span>'
+            + '<span class="od-sr"> — ' + esc(etykieta) + '</span></button>';
+    }
+
+    return '<li class="od-termin">'
+         +   chip
+         +   '<div class="od-termin__tresc">'
+         +     tytul
+         +     dopisek
+         +     (meta || t.miejsce
+                ? '<div class="od-termin__meta">' + meta + renderMiejsce(t.miejsce) + '</div>'
+                : '')
+         +   '</div>'
+         +   akcja
+         + '</li>';
+  }
+
+  function renderKarta(k){
+    var terminy = aktualneTerminy(k);
+
+    var tresc = terminy.length
+      ? '<ul class="od-terminy">' + terminy.map(function(t){ return renderTermin(t, k); }).join('') + '</ul>'
+      : '<p class="od-karta__pusto">' + esc(BRAK_TERMINOW.tekst)
+        + (BRAK_TERMINOW.akcja
+            ? ' <a class="od-karta__pusto-link" href="' + esc(BRAK_TERMINOW.akcja.link) + '">'
+              + esc(BRAK_TERMINOW.akcja.tekst) + '</a>'
+            : '')
+        + '</p>';
+
+    /* CTA zostaje także przy pustej liście — nigdy nie zostawiamy ślepego zaułka. */
+    var cta = '';
+    if (k.zapisy) {
+      var zewn = /^https?:/i.test(k.zapisy.link);
+      cta = '<a class="od-karta__cta" href="' + esc(k.zapisy.link) + '"'
+          + (zewn ? ' target="_blank" rel="noopener"' : '') + '>'
+          + '<span>' + esc(k.zapisy.tekst) + '</span>'
+          + (zewn ? '<span class="od-sr"> (otwiera się w nowej karcie)</span>' : '')
+          + strzalka('od-arrow--cta' + (zewn ? ' od-arrow--ext' : '')) + '</a>';
+    }
+
+    return '<section class="od-karta' + (k.motyw ? ' od-motyw-' + esc(k.motyw) : '') + '"'
+         +   ' id="' + esc(k.id) + '" aria-labelledby="' + esc(k.id) + '-tytul"'
+         +   (k.jezyk === 'EN' ? ' lang="en"' : '') + '>'
+         +   '<div class="od-karta__head">'
+         +     (k.podtytul ? '<span>' + esc(k.podtytul) + '</span>' : '')
+         +     '<h2 id="' + esc(k.id) + '-tytul">' + esc(k.tytul) + '</h2>'
+         +   '</div>'
+         +   tresc
+         +   '<div class="od-karta__spacer"></div>'
+         +   cta
+         + '</section>';
+  }
+
+  function renderFormularz(f){
+    return '<section class="od-formularz" id="' + esc(f.kontener) + '" aria-labelledby="od-formularz-tytul">'
+         +   '<div class="od-formularz__box">'
+         +     '<h2 id="od-formularz-tytul">' + esc(f.naglowek) + '</h2>'
+         +     '<p>' + esc(f.opis) + '</p>'
+         +     '<div class="od-status" id="od-status" role="status" aria-live="polite" hidden></div>'
+         +     '<div id="od-formularz-ramka"></div>'
+         +   '</div>'
+         + '</section>';
+  }
+
+  function renderInfo(info){
+    if(!info) return '';
+    var punkty = info.punkty.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('');
+    var media = info.zdjecie
+      ? '<div class="open-days-info__media"><img src="' + esc(info.zdjecie) + '" alt="' + esc(info.zdjecieAlt || '')
+        + '" loading="lazy" decoding="async" width="1200" height="800" onerror="this.style.display=\'none\'"></div>'
+      : '';
+    return '<section class="open-days-info" aria-label="Co Cię czeka podczas dnia otwartego">'
+         +   '<div class="open-days-info__text">'
+         +     '<h2>' + esc(info.naglowek) + '</h2>'
+         +     '<ul>' + punkty + '</ul>'
+         +     (info.stopka ? '<p class="open-days-info__foot">' + esc(info.stopka) + '</p>' : '')
+         +     (info.kontakt ? '<p class="open-days-info__foot">' + esc(info.kontakt.tekst)
+              + ' <a href="mailto:' + esc(info.kontakt.mail) + '">' + esc(info.kontakt.mail) + '</a></p>' : '')
+         +   '</div>'
+         +   media
+         + '</section>';
+  }
+
+  function renderGaleria(g){
+    if(!g || !g.zdjecia || !g.zdjecia.length) return '';
+    var kolor = function(i){ return 'hsl(' + ((i*43)%360) + ',42%,80%)'; };
+    var slides = g.zdjecia.map(function(z,i){
+      var img = z.src
+        ? '<img src="' + esc(z.src) + '" alt="' + esc(z.alt || '') + '" loading="lazy" decoding="async"'
+          + ' onerror="this.style.display=\'none\'">'
+        : '';
+      return '<div class="odg-slide" role="group" aria-roledescription="slajd" aria-label="' + (i+1) + ' z ' + g.zdjecia.length + '"'
+           + ' style="background:' + kolor(i) + '"><span class="odg-ph" aria-hidden="true">Zdjęcie ' + (i+1) + '</span>' + img + '</div>';
+    }).join('');
+    var thumbs = g.zdjecia.map(function(z,i){
+      var img = z.src ? '<img src="' + esc(z.src) + '" alt="" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' : '';
+      return '<button class="odg-thumb" type="button" aria-label="Pokaż zdjęcie ' + (i+1) + ': ' + esc(z.alt || '') + '">'
+           + '<span class="odg-ph" aria-hidden="true">' + (i+1) + '</span>' + img + '</button>';
+    }).join('');
+    var pauza = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect></svg>';
+    return '<section class="odg-gallery" aria-labelledby="od-galeria-tytul">'
+         +   (g.naglowek ? '<h2 id="od-galeria-tytul">' + esc(g.naglowek) + '</h2>' : '')
+         +   '<div class="odg-stage" role="region" aria-roledescription="karuzela" aria-label="Zdjęcia z dni otwartych" tabindex="0">'
+         +     '<button class="odg-arrow odg-prev" type="button" aria-label="Poprzednie zdjęcie">' + strzalka('od-arrow--gal') + '</button>'
+         +     '<div class="odg-track">' + slides + '</div>'
+         +     '<button class="odg-arrow odg-next" type="button" aria-label="Następne zdjęcie">' + strzalka('od-arrow--gal') + '</button>'
+         +     '<div class="odg-bar">'
+         +       '<button class="odg-play" type="button" aria-label="Zatrzymaj pokaz slajdów">' + pauza + '</button>'
+         +       '<div class="odg-counter" aria-live="polite"><span class="odg-cur">1</span> / <span class="odg-total">' + g.zdjecia.length + '</span></div>'
+         +     '</div>'
+         +   '</div>'
+         +   '<div class="odg-thumbs">' + thumbs + '</div>'
+         + '</section>';
+  }
+
+
+  /* ------------------------------------------------------------------ *
+   *  ZACHOWANIA
+   * ------------------------------------------------------------------ */
+
+  function initWstep(root){
+    var btn = root.querySelector('.od-wstep__toggle');
+    if(!btn) return;
+    var box = root.querySelector('#od-wstep-reszta');
+    btn.addEventListener('click', function(){
+      var otwarte = box.hasAttribute('hidden');
+      if (otwarte) { box.removeAttribute('hidden'); } else { box.setAttribute('hidden',''); }
+      btn.setAttribute('aria-expanded', otwarte ? 'true' : 'false');
+      btn.textContent = otwarte ? btn.getAttribute('data-zwin') : btn.getAttribute('data-rozwin');
+    });
+  }
+
+  function initFormularz(){
+    if (document.getElementById(FORMULARZ.id)) { return; }
+    var box = document.getElementById('od-formularz-ramka');
+    if (!box) { return; }
+
+    var ramka = document.createElement('iframe');
+    ramka.id = FORMULARZ.id;
+    ramka.title = FORMULARZ.tytul;
+    ramka.src = FORMULARZ.adres;
+    ramka.setAttribute('allowtransparency', 'true');
+    ramka.setAttribute('allow', 'geolocation; microphone; camera; fullscreen; payment');
+    ramka.setAttribute('frameborder', '0');
+    ramka.setAttribute('scrolling', 'no');
+    ramka.style.cssText = 'min-width:100%;max-width:100%;height:' + FORMULARZ.wysokosc + ';border:none;display:block;';
+    box.appendChild(ramka);
+
+    var handler = document.createElement('script');
+    handler.src = FORMULARZ.baza + 's/umd/latest/for-form-embed-handler.js';
+    handler.onload = function () {
+      if (window.jotformEmbedHandler) {
+        window.jotformEmbedHandler("iframe[id='" + FORMULARZ.id + "']", FORMULARZ.baza);
+      }
+    };
+    document.body.appendChild(handler);
+  }
+
+  function initZapisy(root){
+    var bazowy = '';
+    var terminy = {};
+    var kierunki = [];
+
+    function znajdzRamke(){
+      var r = document.getElementById(FORMULARZ.id);
+      if (r && !bazowy) { bazowy = r.getAttribute('src').split('?')[0]; }
+      return r;
+    }
+
+    function adres(){
+      var parametry = [];
+      for (var pole in terminy) {
+        if (Object.prototype.hasOwnProperty.call(terminy, pole)) {
+          parametry.push(encodeURIComponent(pole) + '=' + encodeURIComponent(terminy[pole].wartosc));
+        }
+      }
+      if (kierunki.length && ZAPISY.poleKierunek) {
+        parametry.push(encodeURIComponent(ZAPISY.poleKierunek) + '=' + kierunki.map(encodeURIComponent).join(','));
+      }
+      return parametry.length ? bazowy + '?' + parametry.join('&') : bazowy;
+    }
+
+    function odswiezStatus(){
+      var el = document.getElementById('od-status');
+      if (!el) return;
+      var lista = [];
+      for (var p in terminy) {
+        if (Object.prototype.hasOwnProperty.call(terminy, p)) { lista.push(terminy[p].etykieta); }
+      }
+      if (!lista.length) { el.hidden = true; el.innerHTML = ''; return; }
+      el.innerHTML = '<strong>' + esc(ZAPISY.statusPrefiks) + '</strong>'
+                   + lista.map(esc).join('<br>')
+                   + '<br><span>' + esc(ZAPISY.statusPodpowiedz) + '</span>';
+      el.hidden = false;
+    }
+
+    root.addEventListener('click', function(e){
+      var cel = e.target.closest ? e.target : null;
+
+      /* Kafelek/linki wewnętrzne — płynne przewijanie z poszanowaniem reduced-motion. */
+      var przewijacz = cel && cel.closest ? cel.closest('[data-przewin]') : null;
+      if (przewijacz) {
+        e.preventDefault();
+        var docel = document.getElementById(przewijacz.getAttribute('data-przewin'));
+        if (docel) { history.replaceState(null, '', '#' + docel.id); przewin(docel); }
+        return;
+      }
+
+      var btn = cel && cel.closest ? cel.closest('[data-termin]') : null;
+      if (!btn) return;
+
+      var pole = btn.getAttribute('data-pole');
+      var kierunek = btn.getAttribute('data-kierunek');
+
+      /* Ponowne kliknięcie tego samego terminu = odznaczenie. */
+      if (terminy[pole] && terminy[pole].btn === btn) {
+        btn.classList.remove('is-wybrany');
+        btn.setAttribute('aria-pressed', 'false');
+        delete terminy[pole];
+      } else {
+        if (terminy[pole]) {
+          terminy[pole].btn.classList.remove('is-wybrany');
+          terminy[pole].btn.setAttribute('aria-pressed', 'false');
+        }
+        terminy[pole] = {
+          wartosc: btn.getAttribute('data-termin'),
+          etykieta: btn.getAttribute('data-etykieta'),
+          btn: btn
+        };
+        btn.classList.add('is-wybrany');
+        btn.setAttribute('aria-pressed', 'true');
+        if (kierunek && kierunki.indexOf(kierunek) === -1) { kierunki.push(kierunek); }
+      }
+
+      var ramka = znajdzRamke();
+      if (ramka) {
+        var nowy = adres();
+        if (ramka.getAttribute('src') !== nowy) { ramka.setAttribute('src', nowy); }
+      }
+
+      odswiezStatus();
+      przewin(document.getElementById(FORMULARZ.kontener));
+    });
+  }
+
+  function initGaleria(root){
+    var g = root.querySelector('.odg-gallery');
+    if(!g) return;
+    var track  = g.querySelector('.odg-track');
+    var slides = g.querySelectorAll('.odg-slide');
+    var thumbs = g.querySelectorAll('.odg-thumb');
+    var cur    = g.querySelector('.odg-cur');
+    var play   = g.querySelector('.odg-play');
+    var stage  = g.querySelector('.odg-stage');
+    var total  = slides.length;
+    var idx = 0, timer = null, wlaczone = GALERIA.autoplay && !BEZ_RUCHU;
+
+    var ikonaPauzy = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect></svg>';
+    var ikonaPlay  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><polygon points="7 4 20 12 7 20"></polygon></svg>';
+
+    function go(n){
+      idx = (n + total) % total;
+      track.style.transform = 'translateX(-' + (idx*100) + '%)';
+      if(cur) cur.textContent = (idx+1);
+      for(var i=0;i<total;i++){
+        slides[i].setAttribute('aria-hidden', i === idx ? 'false' : 'true');
+        thumbs[i].classList.toggle('is-active', i===idx);
+        thumbs[i].setAttribute('aria-current', i===idx ? 'true' : 'false');
+      }
+    }
+    function next(){ go(idx+1); }
+    function prev(){ go(idx-1); }
+    function start(){ if(wlaczone && total>1 && !timer){ timer = setInterval(next, GALERIA.interval || 5000); } }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function restart(){ stop(); start(); }
+
+    function odswiezPrzycisk(){
+      play.innerHTML = wlaczone ? ikonaPauzy : ikonaPlay;
+      play.setAttribute('aria-label', wlaczone ? 'Zatrzymaj pokaz slajdów' : 'Wznów pokaz slajdów');
+    }
+
+    play.addEventListener('click', function(){
+      wlaczone = !wlaczone;
+      odswiezPrzycisk();
+      if (wlaczone) { start(); } else { stop(); }
+    });
+
+    g.querySelector('.odg-next').addEventListener('click', function(){ next(); restart(); });
+    g.querySelector('.odg-prev').addEventListener('click', function(){ prev(); restart(); });
+    for(var i=0;i<thumbs.length;i++){ (function(i){ thumbs[i].addEventListener('click', function(){ go(i); restart(); }); })(i); }
+
+    /* Klawiatura: strzałki przewijają karuzelę. */
+    stage.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); restart(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); restart(); }
+    });
+
+    var x0 = null;
+    stage.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    stage.addEventListener('touchend', function(e){
+      if(x0===null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if(Math.abs(dx) > 40){ (dx < 0 ? next : prev)(); restart(); }
+      x0 = null;
+    });
+
+    g.addEventListener('mouseenter', stop);
+    g.addEventListener('mouseleave', start);
+    g.addEventListener('focusin', stop);
+    g.addEventListener('focusout', function(e){
+      if (!g.contains(e.relatedTarget)) { start(); }
+    });
+
+    odswiezPrzycisk();
+    go(0);
+    start();
+  }
+
+
+  /* ------------------------------------------------------------------ *
+   *  MONTAŻ
+   * ------------------------------------------------------------------ */
+
+  var html = renderNaglowek(NAGLOWEK)
+           + renderWstep(WSTEP)
+           + renderNawigacja(KARTY)
+           + '<div class="od-siatka">' + KARTY.map(renderKarta).join('') + '</div>'
+           + renderFormularz(FORMULARZ)
+           + renderInfo(INFO)
+           + renderGaleria(GALERIA);
+
+  var mount = document.getElementById('dni-otwarte-daty');
+  if (!mount) {
+    var cs = document.currentScript;
+    mount = document.createElement('div');
+    mount.id = 'dni-otwarte-daty';
+    if (cs && cs.parentNode) { cs.parentNode.insertBefore(mount, cs); }
+    else { document.body.appendChild(mount); }
+  }
+  mount.innerHTML = html;
+
+  initFormularz();
+  initWstep(mount);
+  initZapisy(mount);
+  initGaleria(mount);
+
+})();
+</script>
+
+</body>
+</html>
