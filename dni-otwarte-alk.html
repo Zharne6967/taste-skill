@@ -339,10 +339,8 @@
     /* ---------- WSTĘP ---------- */
     '.od-wstep{max-width:var(--od-maxw);margin:15px auto 0;padding:0 20px;}',
     '.od-wstep__box{background:var(--od-surface);padding:clamp(26px,3vw,42px) clamp(24px,3vw,46px);box-shadow:var(--od-shadow-sm);}',
-    /* Dwie kolumny zamiast jednego wąskiego bloku tekstu przyklejonego do lewej. */
-    '.od-wstep__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,3.2vw,56px);align-items:start;}',
-    '.od-wstep__box p{margin:0 0 16px;font-size:var(--od-fs-body);line-height:1.6;color:var(--od-ink);max-width:56ch;text-wrap:pretty;}',
-    '.od-wstep__lead{font-weight:700;font-size:var(--od-fs-lead)!important;margin-bottom:0!important;}',
+    '.od-wstep__box p{margin:0 0 16px;font-size:var(--od-fs-body);line-height:1.6;color:var(--od-ink);text-wrap:pretty;}',
+    '.od-wstep__lead{font-weight:700;font-size:var(--od-fs-lead)!important;}',
     '.od-wstep__reszta p:last-child{margin-bottom:0;}',
     '.od-wstep__toggle{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 0;min-height:24px;border:none;background:none;cursor:pointer;color:var(--od-accent-ink);font-family:inherit;font-size:16px;font-weight:700;text-decoration:underline;text-underline-offset:3px;}',
     '.od-wstep__toggle:hover{color:var(--od-accent-ink-hover);}',
@@ -472,7 +470,6 @@
     '  .od-hero__tile:hover{transform:none;box-shadow:var(--od-shadow-md);}',
     '  .od-hero__tile-txt strong{font-size:15px;}',
     '  .od-hero__tile-txt small{font-size:13px;}',
-    '  .od-wstep__grid{grid-template-columns:1fr;gap:16px;}',
     '  .od-siatka{grid-template-columns:1fr;gap:20px;}',
     '  .od-termin{flex-wrap:wrap;gap:12px 16px;}',
     '  .od-termin__akcja{flex:0 0 auto;align-self:center;min-height:44px;padding:11px 18px;font-size:14px;}',
@@ -610,26 +607,15 @@
 
   function renderWstep(w){
     if(!w) return '';
-    var akapity = w.reszta || [];
-    /* Pierwszy akapit widoczny od razu w prawej kolumnie — reszta pod „Czytaj więcej”. */
-    var widoczny = akapity.length ? '<p>' + esc(akapity[0]) + '</p>' : '';
-    var ukryte = akapity.slice(1).map(function(a){ return '<p>' + esc(a) + '</p>'; }).join('');
-
-    var prawa = widoczny
-      + (ukryte
-          ? '<div class="od-wstep__reszta" id="od-wstep-reszta" hidden>' + ukryte + '</div>'
-          + '<button class="od-wstep__toggle" type="button" aria-expanded="false" aria-controls="od-wstep-reszta"'
-          + ' data-rozwin="' + esc(w.rozwin) + '" data-zwin="' + esc(w.zwin) + '">' + esc(w.rozwin) + '</button>'
-          : '');
-
-    var tresc = prawa
-      ? '<div class="od-wstep__grid">'
-        + '<div><p class="od-wstep__lead">' + esc(w.lead) + '</p></div>'
-        + '<div>' + prawa + '</div>'
-        + '</div>'
-      : '<p class="od-wstep__lead">' + esc(w.lead) + '</p>';
-
-    return '<div class="od-wstep"><div class="od-wstep__box">' + tresc + '</div></div>';
+    var reszta = (w.reszta || []).map(function(a){ return '<p>' + esc(a) + '</p>'; }).join('');
+    return '<div class="od-wstep"><div class="od-wstep__box">'
+         +   '<p class="od-wstep__lead">' + esc(w.lead) + '</p>'
+         +   (reszta
+              ? '<div class="od-wstep__reszta" id="od-wstep-reszta" hidden>' + reszta + '</div>'
+              + '<button class="od-wstep__toggle" type="button" aria-expanded="false" aria-controls="od-wstep-reszta"'
+              + ' data-rozwin="' + esc(w.rozwin) + '" data-zwin="' + esc(w.zwin) + '">' + esc(w.rozwin) + '</button>'
+              : '')
+         + '</div></div>';
   }
 
   function renderNawigacja(karty){
