@@ -218,6 +218,9 @@
     baza: 'https://kozminski.jotform.com/',
     tytul: 'Formularz zapisów na dni otwarte w Akademii Leona Koźmińskiego 2026/2027',
     wysokosc: '539px',
+    wysokoscMin: 420,          /* poniżej tej wartości nie zjeżdżamy nawet na sygnał z JotForm */
+    wysokoscAwaryjna: '900px', /* gdy formularz nie przyśle swojej wysokości (np. po przekierowaniu) */
+    czasOczekiwania: 4000,
     naglowek: 'Formularz rejestracyjny',
     opis: 'Kliknij „Zapisz się” przy wybranym terminie — data uzupełni się w formularzu automatycznie. Możesz też wybrać ją ręcznie poniżej.'
   };
@@ -294,6 +297,9 @@
     '  --od-fs-lead:clamp(16px, .98rem + .2vw, 18px);',
     '  --od-fs-body:17px;',
     '  --od-fs-small:14px;',
+    /* Plik banera ma wtopione ciemne marginesy po bokach — delikatny zoom je kadruje.
+       Po podmianie zdjęcia na kadrowane „na styk” ustaw 1 i paski przestaną być potrzebne. */
+    '  --od-hero-zoom:1.06;',
     '}',
     '#dni-otwarte-daty *,#dni-otwarte-daty *::before,#dni-otwarte-daty *::after{box-sizing:border-box;}',
     '#dni-otwarte-daty button,#dni-otwarte-daty a{touch-action:manipulation;-webkit-tap-highlight-color:rgba(20,20,43,.15);}',
@@ -301,7 +307,7 @@
     /* ---------- HERO ---------- */
     '.od-hero{max-width:var(--od-maxw);margin:0 auto;padding:0 20px;position:relative;}',
     '.od-hero__inner{position:relative;overflow:hidden;background:var(--od-ink);height:clamp(220px,34vw,420px);}',
-    '.od-hero__inner>img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;}',
+    '.od-hero__inner>img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;transform:scale(var(--od-hero-zoom));transform-origin:center center;}',
     '.od-hero__scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,43,.92) 0%,rgba(20,20,43,.66) 42%,rgba(20,20,43,.06) 78%);}',
     '.od-hero__scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,20,43,.55) 0%,rgba(20,20,43,0) 55%);}',
     '.od-hero__content{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(24px,3vw,44px) clamp(20px,2.4vw,34px);z-index:1;}',
@@ -333,8 +339,10 @@
     /* ---------- WSTĘP ---------- */
     '.od-wstep{max-width:var(--od-maxw);margin:15px auto 0;padding:0 20px;}',
     '.od-wstep__box{background:var(--od-surface);padding:clamp(26px,3vw,42px) clamp(24px,3vw,46px);box-shadow:var(--od-shadow-sm);}',
-    '.od-wstep__box p{margin:0 0 16px;font-size:var(--od-fs-body);line-height:1.6;color:var(--od-ink);max-width:70ch;text-wrap:pretty;}',
-    '.od-wstep__lead{font-weight:700;font-size:var(--od-fs-lead)!important;}',
+    /* Dwie kolumny zamiast jednego wąskiego bloku tekstu przyklejonego do lewej. */
+    '.od-wstep__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,3.2vw,56px);align-items:start;}',
+    '.od-wstep__box p{margin:0 0 16px;font-size:var(--od-fs-body);line-height:1.6;color:var(--od-ink);max-width:56ch;text-wrap:pretty;}',
+    '.od-wstep__lead{font-weight:700;font-size:var(--od-fs-lead)!important;margin-bottom:0!important;}',
     '.od-wstep__reszta p:last-child{margin-bottom:0;}',
     '.od-wstep__toggle{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 0;min-height:24px;border:none;background:none;cursor:pointer;color:var(--od-accent-ink);font-family:inherit;font-size:16px;font-weight:700;text-decoration:underline;text-underline-offset:3px;}',
     '.od-wstep__toggle:hover{color:var(--od-accent-ink-hover);}',
@@ -464,6 +472,7 @@
     '  .od-hero__tile:hover{transform:none;box-shadow:var(--od-shadow-md);}',
     '  .od-hero__tile-txt strong{font-size:15px;}',
     '  .od-hero__tile-txt small{font-size:13px;}',
+    '  .od-wstep__grid{grid-template-columns:1fr;gap:16px;}',
     '  .od-siatka{grid-template-columns:1fr;gap:20px;}',
     '  .od-termin{flex-wrap:wrap;gap:12px 16px;}',
     '  .od-termin__akcja{flex:0 0 auto;align-self:center;min-height:44px;padding:11px 18px;font-size:14px;}',
@@ -601,15 +610,26 @@
 
   function renderWstep(w){
     if(!w) return '';
-    var reszta = (w.reszta || []).map(function(a){ return '<p>' + esc(a) + '</p>'; }).join('');
-    return '<div class="od-wstep"><div class="od-wstep__box">'
-         +   '<p class="od-wstep__lead">' + esc(w.lead) + '</p>'
-         +   (reszta
-              ? '<div class="od-wstep__reszta" id="od-wstep-reszta" hidden>' + reszta + '</div>'
-              + '<button class="od-wstep__toggle" type="button" aria-expanded="false" aria-controls="od-wstep-reszta"'
-              + ' data-rozwin="' + esc(w.rozwin) + '" data-zwin="' + esc(w.zwin) + '">' + esc(w.rozwin) + '</button>'
-              : '')
-         + '</div></div>';
+    var akapity = w.reszta || [];
+    /* Pierwszy akapit widoczny od razu w prawej kolumnie — reszta pod „Czytaj więcej”. */
+    var widoczny = akapity.length ? '<p>' + esc(akapity[0]) + '</p>' : '';
+    var ukryte = akapity.slice(1).map(function(a){ return '<p>' + esc(a) + '</p>'; }).join('');
+
+    var prawa = widoczny
+      + (ukryte
+          ? '<div class="od-wstep__reszta" id="od-wstep-reszta" hidden>' + ukryte + '</div>'
+          + '<button class="od-wstep__toggle" type="button" aria-expanded="false" aria-controls="od-wstep-reszta"'
+          + ' data-rozwin="' + esc(w.rozwin) + '" data-zwin="' + esc(w.zwin) + '">' + esc(w.rozwin) + '</button>'
+          : '');
+
+    var tresc = prawa
+      ? '<div class="od-wstep__grid">'
+        + '<div><p class="od-wstep__lead">' + esc(w.lead) + '</p></div>'
+        + '<div>' + prawa + '</div>'
+        + '</div>'
+      : '<p class="od-wstep__lead">' + esc(w.lead) + '</p>';
+
+    return '<div class="od-wstep"><div class="od-wstep__box">' + tresc + '</div></div>';
   }
 
   function renderNawigacja(karty){
@@ -824,6 +844,8 @@
     ramka.style.cssText = 'min-width:100%;max-width:100%;height:' + FORMULARZ.wysokosc + ';border:none;display:block;';
     box.appendChild(ramka);
 
+    initWysokoscRamki(ramka);
+
     var handler = document.createElement('script');
     handler.src = FORMULARZ.baza + 's/umd/latest/for-form-embed-handler.js';
     handler.onload = function () {
@@ -832,6 +854,55 @@
       }
     };
     document.body.appendChild(handler);
+  }
+
+  /* Formularz sam raportuje swoją wysokość przez postMessage. Słuchamy tego niezależnie
+     od skryptu JotForm — dzięki temu ramka rośnie i maleje razem z treścią, także po
+     wysłaniu zgłoszenia i na stronie z podziękowaniem. */
+  function initWysokoscRamki(ramka){
+    var dostalismyWysokosc = false;
+
+    function zaufaneZrodlo(origin){
+      var a = document.createElement('a');
+      a.href = origin;
+      var host = a.hostname || '';
+      return host === 'jotform.com' || host.slice(-12) === '.jotform.com';
+    }
+
+    function ustaw(h){
+      h = parseInt(h, 10);
+      if (!h || isNaN(h)) return;
+      h = Math.max(h, FORMULARZ.wysokoscMin);
+      dostalismyWysokosc = true;
+      if (parseInt(ramka.style.height, 10) !== h) { ramka.style.height = h + 'px'; }
+    }
+
+    window.addEventListener('message', function(e){
+      if (!zaufaneZrodlo(e.origin)) return;
+      var d = e.data;
+      if (typeof d === 'string') {
+        /* Format klasyczny: "setHeight:812:262042735826963" */
+        var cz = d.split(':');
+        if (cz[0] === 'setHeight') { ustaw(cz[1]); }
+        else if (d.indexOf('{') === 0) {
+          try { d = JSON.parse(d); } catch (err) { return; }
+        }
+      }
+      if (d && typeof d === 'object') {
+        var typ = d.type || d.action || d.name;
+        if (typ === 'setHeight' || typ === 'resize') { ustaw(d.height || d.value || d.data); }
+      }
+    }, false);
+
+    /* Gdyby formularz nigdy nie przysłał wysokości (przekierowanie na inną domenę,
+       zablokowany skrypt) — dajemy więcej miejsca i włączamy przewijanie w ramce,
+       żeby treść nie została ucięta. */
+    setTimeout(function(){
+      if (!dostalismyWysokosc) {
+        ramka.style.height = FORMULARZ.wysokoscAwaryjna;
+        ramka.setAttribute('scrolling', 'auto');
+      }
+    }, FORMULARZ.czasOczekiwania);
   }
 
   function initZapisy(root){
