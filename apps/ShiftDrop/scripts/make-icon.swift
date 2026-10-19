@@ -66,12 +66,15 @@ func drawIcon(side: Int) -> CGImage? {
         if hovered {
             context.setShadow(offset: CGSize(width: 0, height: -8), blur: 22, color: color(0xB4260A, 0.45))
         }
+        // One layer, so the shadow is cast by the finished segment rather than by fill and stroke separately.
+        context.beginTransparencyLayer(auxiliaryInfo: nil)
         context.addPath(path)
         context.setLineJoin(.round)
         context.setLineWidth(34)
         context.setFillColor(hovered ? color(0xF2401A) : color(0xFFF3EA))
         context.setStrokeColor(hovered ? color(0xF2401A) : color(0xFFF3EA))
         context.drawPath(using: .fillStroke)
+        context.endTransparencyLayer()
         context.restoreGState()
     }
 

@@ -6,6 +6,18 @@ Podczas przeciągania dowolnego pliku (z Findera, biurka, Zdjęć, przeglądarki
 koło z formatami. Drugi Shift przełącza na koło narzędzi. Wynik ląduje obok oryginału, a mały dymek potwierdza zapis
 (kliknięcie pokazuje plik w Finderze). Aplikacja siedzi w pasku menu, nie ma ikony w Docku.
 
+<p align="center">
+  <img src="docs/wheel-image-formats.png" width="260" alt="Koło formatów dla JPG" />
+  <img src="docs/wheel-image-tools.png" width="260" alt="Koło narzędzi (drugi Shift)" />
+  <img src="docs/wheel-pdf-formats.png" width="260" alt="Koło formatów dla PDF" />
+</p>
+<p align="center">
+  <img src="docs/editor-crop.png" width="400" alt="Edytor Crop" />
+  <img src="docs/editor-background.png" width="400" alt="Edytor Add BG" />
+</p>
+
+<sub>Zrzuty są renderowane automatycznie w CI (`--snapshots`).</sub>
+
 ## Co potrafi
 
 | Plik | Koło formatów | Koło narzędzi (drugi ⇧) |
@@ -21,8 +33,8 @@ koło z formatami. Drugi Shift przełącza na koło narzędzi. Wynik ląduje obo
   tak jak na nagraniu (proporcje Free / 1:1 / 16:9 / 9:16 / 4:3 / 3:4, tło z gradientem, padding, zaokrąglenia, cień…).
 - Wszystko działa lokalnie, na frameworkach Apple (ImageIO, PDFKit, Vision, AVFoundation, Core Image). Nic nie jest
   wysyłane do internetu.
-- WEBP i AVIF pojawiają się w kole tylko wtedy, gdy macOS potrafi je zapisać. Jeśli ich brakuje, doinstaluj enkodery:
-  `brew install webp libavif` – ShiftDrop wykryje je sam.
+- macOS (sprawdzone na 15.7) odczytuje WEBP i AVIF, ale nie umie ich zapisywać. Żeby te formaty pojawiły się w kole,
+  doinstaluj enkodery: `brew install webp libavif`. ShiftDrop wykryje je sam, bez restartu konfiguracji.
 
 ## Instalacja
 

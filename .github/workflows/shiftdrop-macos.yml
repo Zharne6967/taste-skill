@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -40,22 +40,6 @@ jobs:
       - name: Render UI snapshots
         if: always()
         run: build/ShiftDrop.app/Contents/MacOS/ShiftDrop --snapshots "$RUNNER_TEMP/snapshots"
-
-      - name: Publish snapshots to a scratch branch for review
-        if: always() && github.event_name == 'push'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          dir="$RUNNER_TEMP/snapshot-branch"
-          mkdir -p "$dir"
-          cp "$RUNNER_TEMP"/snapshots/*.png "$dir"/ 2>/dev/null || true
-          cp "$RUNNER_TEMP/selftest.log" "$dir"/ 2>/dev/null || true
-          cp build/AppIcon.iconset/icon_256x256@2x.png "$dir"/app-icon.png 2>/dev/null || true
-          cd "$dir"
-          git init -q -b snapshots
-          git -c user.name=ci -c user.email=ci@users.noreply.github.com add -A
-          git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -qm "Snapshots for $GITHUB_SHA"
-          git push -fq "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/ci/shiftdrop-snapshots
 
       - name: Upload app
         uses: actions/upload-artifact@v4
