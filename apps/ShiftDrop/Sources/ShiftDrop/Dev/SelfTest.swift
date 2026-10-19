@@ -75,6 +75,8 @@ enum SelfTest {
                         return "already optimal (expected for generated files)"
                     } catch AppError.noSubject where item.action == .tool(.removeBackground) {
                         return "no subject in the sample (expected)"
+                    } catch AppError.noText where file.lastPathComponent == "Logo.png" {
+                        return "no text in the logo (expected)"
                     }
                 }
             }

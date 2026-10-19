@@ -96,7 +96,9 @@ enum ActionRunner {
             })
         case (.compress, .audio):
             return try await withSizeNote(files, try await eachFile(files) { url in
-                [try await MediaEngine.convertAudio(url, to: .m4a, suffix: "Compressed", bitrate: 96_000, override: override)]
+                let output = try await MediaEngine.convertAudio(url, to: .m4a, suffix: "Compressed", bitrate: 96_000, override: override)
+                try MediaEngine.discardIfNotSmaller(output, than: url)
+                return [output]
             })
         case (.removeBackground, .image):
             guard #available(macOS 14.0, *) else { throw AppError.unsupported("Cut Out needs macOS 14 or newer.") }

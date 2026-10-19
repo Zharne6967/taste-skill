@@ -95,7 +95,15 @@ enum MediaEngine {
         } catch {
             try await export(asset, preset: AVAssetExportPreset1280x720, fileType: .mp4, to: output)
         }
+        try discardIfNotSmaller(output, than: url)
         return output
+    }
+
+    /// A "compressed" file that came out larger than the original is useless; drop it.
+    static func discardIfNotSmaller(_ output: URL, than source: URL) throws {
+        guard Output.fileSize(output) >= Output.fileSize(source) else { return }
+        try? FileManager.default.removeItem(at: output)
+        throw AppError.alreadySmall
     }
 
     static func mute(_ url: URL, override: URL?) async throws -> URL {
