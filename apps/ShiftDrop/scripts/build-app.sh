@@ -22,7 +22,7 @@ echo "› Compiling (release)…"
 swift build -c release ${ARCH_FLAGS[@]+"${ARCH_FLAGS[@]}"}
 BIN_DIR="$(swift build -c release ${ARCH_FLAGS[@]+"${ARCH_FLAGS[@]}"} --show-bin-path)"
 
-echo "› Assembling $APP…"
+echo "› Assembling ${APP}…"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN_DIR/ShiftDrop" "$APP/Contents/MacOS/ShiftDrop"
@@ -43,7 +43,7 @@ codesign --force --sign - --timestamp=none "$APP"
 
 rm -f build/ShiftDrop.zip
 (cd build && ditto -c -k --keepParent ShiftDrop.app ShiftDrop.zip)
-echo "✓ Built $ROOT/$APP"
+echo "✓ Built ${ROOT}/${APP}"
 
 if [[ "${1:-}" == "--install" ]]; then
   pkill -x ShiftDrop 2>/dev/null || true
