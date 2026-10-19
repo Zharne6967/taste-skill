@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>ShiftDrop</string>
+	<key>CFBundleExecutable</key>
+	<string>ShiftDrop</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>app.shiftdrop.mac</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>ShiftDrop</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleVersion</key>
+	<string>__BUILD__</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>13.0</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>ShiftDrop — drag, press Shift, drop.</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>ShiftDrop saves converted files next to the originals on your Desktop.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>ShiftDrop saves converted files next to the originals in Documents.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>ShiftDrop saves converted files next to the originals in Downloads.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>ShiftDrop saves converted files next to the originals on external drives.</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>ShiftDrop saves converted files next to the originals on network volumes.</string>
+</dict>
+</plist>

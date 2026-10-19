@@ -1,0 +1,58 @@
+name: ShiftDrop (macOS app)
+
+on:
+  push:
+    paths:
+      - "apps/ShiftDrop/**"
+      - ".github/workflows/shiftdrop-macos.yml"
+  pull_request:
+    paths:
+      - "apps/ShiftDrop/**"
+      - ".github/workflows/shiftdrop-macos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: apps/ShiftDrop
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          sw_vers
+          xcodebuild -version
+          swift --version
+
+      - name: Build universal app
+        run: UNIVERSAL=1 VERSION=1.0.0 ./scripts/build-app.sh
+
+      - name: Self-test (every conversion on generated files)
+        run: build/ShiftDrop.app/Contents/MacOS/ShiftDrop --selftest "$RUNNER_TEMP/selftest" 2>&1 | tee "$RUNNER_TEMP/selftest.log"
+
+      - name: Render UI snapshots
+        if: always()
+        run: build/ShiftDrop.app/Contents/MacOS/ShiftDrop --snapshots "$RUNNER_TEMP/snapshots"
+
+      - name: Upload app
+        uses: actions/upload-artifact@v4
+        with:
+          name: ShiftDrop-app
+          path: apps/ShiftDrop/build/ShiftDrop.zip
+          if-no-files-found: error
+
+      - name: Upload snapshots and self-test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ShiftDrop-snapshots
+          path: |
+            ${{ runner.temp }}/snapshots/*.png
+            ${{ runner.temp }}/selftest.log
+          if-no-files-found: warn
