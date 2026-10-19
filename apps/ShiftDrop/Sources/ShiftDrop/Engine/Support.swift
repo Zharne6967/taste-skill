@@ -106,7 +106,7 @@ enum Output {
     }
 
     static func folder(for source: URL, suffix: String, override: URL?) throws -> URL {
-        let directory = directory(for: source, override: override)
+        let directory = Self.directory(for: source, override: override)
         let base = baseName(of: source, suffix: suffix)
         var candidate = directory.appendingPathComponent(base, isDirectory: true)
         var counter = 2

@@ -83,10 +83,11 @@ enum PDFEngine {
     static func compress(_ url: URL, override: URL?) throws -> URL {
         let document = try open(url)
         let output = Output.url(for: url, suffix: "Compressed", ext: "pdf", override: override)
-        let options: [PDFDocumentWriteOption: Any] = [
-            .saveImagesAsJPEGOption: true,
-            .optimizeImagesForScreenOption: true,
-        ]
+        var options: [PDFDocumentWriteOption: Any] = [:]
+        if #available(macOS 13.4, *) {
+            options[.saveImagesAsJPEGOption] = true
+            options[.optimizeImagesForScreenOption] = true
+        }
         guard document.write(to: output, withOptions: options) else { throw AppError.writeFailed(output.lastPathComponent) }
         if Output.fileSize(output) >= Output.fileSize(url) {
             try? FileManager.default.removeItem(at: output)

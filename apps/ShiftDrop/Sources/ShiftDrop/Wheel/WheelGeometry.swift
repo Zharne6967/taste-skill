@@ -2,7 +2,7 @@ import CoreGraphics
 import SwiftUI
 
 enum WheelHit: Equatable {
-    case none, center
+    case outside, center
     case segment(Int)
 }
 
@@ -28,11 +28,11 @@ struct WheelGeometry: Equatable {
     /// Hit test from an offset relative to the wheel's centre, with y pointing up (AppKit).
     func hit(dx: CGFloat, dy: CGFloat, count: Int) -> WheelHit {
         let distance = hypot(dx, dy)
-        if distance > discRadius + 4 { return .none }
+        if distance > discRadius + 4 { return .outside }
         if distance <= innerRadius || count == 0 { return .center }
         var angle = atan2(Double(dx), Double(dy))
         if angle < 0 { angle += 2 * .pi }
-        let span = span(count: count)
+        let span = self.span(count: count)
         let index = Int(((angle + span / 2) / span).rounded(.down)) % count
         return .segment(index)
     }

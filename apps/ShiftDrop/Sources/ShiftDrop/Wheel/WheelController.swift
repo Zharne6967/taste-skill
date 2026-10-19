@@ -40,19 +40,19 @@ final class WheelDropView: NSView {
 
     private func hit(atWindowPoint point: NSPoint) -> WheelHit {
         let local = convert(point, from: nil)
-        return hitTester?(local.x - bounds.midX, local.y - bounds.midY) ?? .none
+        return hitTester?(local.x - bounds.midX, local.y - bounds.midY) ?? .outside
     }
 
     override func hitTest(_ point: NSPoint) -> NSView? {
         let local = convert(point, from: superview)
-        let hit = hitTester?(local.x - bounds.midX, local.y - bounds.midY) ?? .none
-        return hit == .none ? nil : self
+        let hit = hitTester?(local.x - bounds.midX, local.y - bounds.midY) ?? .outside
+        return hit == .outside ? nil : self
     }
 
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
     private func operation(for sender: NSDraggingInfo) -> NSDragOperation {
-        let hit = hit(atWindowPoint: sender.draggingLocation)
+        let hit = self.hit(atWindowPoint: sender.draggingLocation)
         onHover?(hit)
         guard case .segment = hit else { return [] }
         let mask = sender.draggingSourceOperationMask
@@ -64,7 +64,7 @@ final class WheelDropView: NSView {
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation { operation(for: sender) }
     override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation { operation(for: sender) }
-    override func draggingExited(_ sender: NSDraggingInfo?) { onHover?(.none) }
+    override func draggingExited(_ sender: NSDraggingInfo?) { onHover?(.outside) }
     override func wantsPeriodicDraggingUpdates() -> Bool { true }
 
     override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
@@ -212,7 +212,7 @@ final class WheelController {
         let panel = WheelPanel()
         let container = WheelContainerView(model: model)
         container.drop.hitTester = { [weak self] dx, dy in
-            guard let self else { return .none }
+            guard let self else { return .outside }
             return self.model.geometry.hit(dx: dx, dy: dy, count: self.model.items.count)
         }
         container.drop.onHover = { [weak self] hit in self?.hover(hit) }

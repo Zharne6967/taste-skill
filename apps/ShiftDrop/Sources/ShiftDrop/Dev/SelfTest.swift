@@ -237,7 +237,7 @@ enum SelfTest {
                   geometry.hit(dx: 0, dy: -radius, count: 4) == .segment(2),
                   geometry.hit(dx: -radius, dy: 0, count: 4) == .segment(3),
                   geometry.hit(dx: 0, dy: 0, count: 4) == .center,
-                  geometry.hit(dx: 400, dy: 0, count: 4) == .none else { throw Failure("hit mapping") }
+                  geometry.hit(dx: 400, dy: 0, count: 4) == .outside else { throw Failure("hit mapping") }
             return "ok"
         }
 

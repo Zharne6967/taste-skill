@@ -37,7 +37,7 @@ enum Bitmap {
     static func usesTransparency(_ image: CGImage) -> Bool {
         guard hasAlpha(image) else { return false }
         let side = 48
-        guard let context = context(width: side, height: side), let data = context.data else { return true }
+        guard let context = Self.context(width: side, height: side), let data = context.data else { return true }
         context.clear(CGRect(x: 0, y: 0, width: side, height: side))
         context.interpolationQuality = .low
         context.draw(image, in: CGRect(x: 0, y: 0, width: side, height: side))
@@ -52,7 +52,7 @@ enum Bitmap {
 
     static func flatten(_ image: CGImage, on color: CGColor = CGColor(gray: 1, alpha: 1)) -> CGImage {
         guard hasAlpha(image),
-              let context = context(width: image.width, height: image.height, opaque: true, colorSpace: image.colorSpace)
+              let context = Self.context(width: image.width, height: image.height, opaque: true, colorSpace: image.colorSpace)
         else { return image }
         let rect = CGRect(x: 0, y: 0, width: image.width, height: image.height)
         context.setFillColor(color)
@@ -67,7 +67,7 @@ enum Bitmap {
         let scale = CGFloat(maxPixel) / CGFloat(longest)
         let width = max(1, Int((CGFloat(image.width) * scale).rounded()))
         let height = max(1, Int((CGFloat(image.height) * scale).rounded()))
-        guard let context = context(width: width, height: height, colorSpace: image.colorSpace) else { return nil }
+        guard let context = Self.context(width: width, height: height, colorSpace: image.colorSpace) else { return nil }
         context.interpolationQuality = .high
         context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
         return context.makeImage()
