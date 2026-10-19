@@ -50,6 +50,7 @@ jobs:
           mkdir -p "$dir"
           cp "$RUNNER_TEMP"/snapshots/*.png "$dir"/ 2>/dev/null || true
           cp "$RUNNER_TEMP/selftest.log" "$dir"/ 2>/dev/null || true
+          cp build/AppIcon.iconset/icon_256x256@2x.png "$dir"/app-icon.png 2>/dev/null || true
           cd "$dir"
           git init -q -b snapshots
           git -c user.name=ci -c user.email=ci@users.noreply.github.com add -A
